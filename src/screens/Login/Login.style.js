@@ -21,6 +21,9 @@ const basicStyles=StyleSheet.create({
     marginBottom: 10,
     color: '#B9C0C8'
   },
+  errorText: {
+    color: 'red'
+  },
   header: {
     fontSize: 45,
     fontWeight: 'bold',

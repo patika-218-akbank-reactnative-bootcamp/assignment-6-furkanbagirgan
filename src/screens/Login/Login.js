@@ -3,6 +3,7 @@ import {SafeAreaView, Text, View} from 'react-native';
 import {useSelector,useDispatch} from 'react-redux';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+import { useForm, Controller } from "react-hook-form";
 
 import styles from './Login.style';
 import Input from '../../components/Input';
@@ -17,20 +18,24 @@ const Login = ({navigation}) => {
   //Necessary states are created.
   const theme = useSelector(state => state.theme.theme);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  });
   const dispatch = useDispatch();
 
   //The entered information is checked and entered into firebase. Then this information is saved to storage and redux.
-  const login = async () => {
+  const login = async (data) => {
     setLoading(true);
-    const res=checkLogin(email,password);
+    const res=checkLogin(data.email,data.password);
     if(res===1){
       try {
-        await signInWithEmailAndPassword(auth,email,password);
-        await setItem('@userData', {email,password,userName:''});
+        await signInWithEmailAndPassword(auth,data.email,data.password);
+        await setItem('@userData', {email:data.email,password:data.password});
         await setItem('@themeData', 'light');
-        dispatch(setCurrentUser({email,password,userName:''}));
+        dispatch(setCurrentUser({email:data.email,password:data.password}));
         dispatch(setTheme('light'));
       } catch (error) {
         showLoginError(error.code);
@@ -51,24 +56,46 @@ const Login = ({navigation}) => {
         <Icon name='snapchat' color={theme==='light' ? '#000' : '#B9C0C8'} size={60} />
         <Text style={styles[theme].header}>Log In</Text>
         <View style={styles[theme].formContainer}>
-          <Input
-            theme={theme}
-            placeholder="Email"
-            value={email}
-            iconName="mail"
-            onChangeText={setEmail}
-            keyboardType="email-address"
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                theme={theme}
+                placeholder="Email"
+                iconName="mail"
+                keyboardType="email-address"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+            name="email"
           />
-          <Input
-            theme={theme}
-            placeholder="Password"
-            value={password}
-            iconName="lock-closed"
-            onChangeText={setPassword}
-            secureTextEntry={true}
+          {errors.email && <Text style={styles[theme].errorText}>This field is required*</Text>}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                theme={theme}
+                placeholder="Password"
+                iconName="lock-closed"
+                secureTextEntry={true}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+            name="password"
           />
+          {errors.password && <Text style={styles[theme].errorText}>This field is required*</Text>}
         </View>
-        <Button title="Log In" loading={loading} onClick={login} />
+        <Button title="Log In" loading={loading} onClick={handleSubmit(login)} />
         <Text style={styles[theme].signupText}>New To Snapchat?</Text>
         <Button title="Sign Up" onClick={goToSignup} />
       </View>
