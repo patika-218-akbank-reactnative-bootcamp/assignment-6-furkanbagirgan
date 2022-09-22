@@ -34,10 +34,10 @@ const Login = ({navigation}) => {
     if(res===1){
       try {
         await signInWithEmailAndPassword(auth,data.email,data.password);
-        await setItem('@userData', {email:data.email,password:data.password});
-        await setItem('@themeData', 'light');
         const q = query(collection(db, "users"), where("id", "==", auth.currentUser.uid ));
         const querySnapshot = await getDocs(q);
+        await setItem('@userData', {email:data.email,password:data.password,userName:querySnapshot.docs[0].data().userName});
+        await setItem('@themeData', 'light');
         dispatch(setCurrentUser({email:data.email,password:data.password,userName:querySnapshot.docs[0].data().userName}));
         dispatch(setTheme('light'));
       } catch (error) {
