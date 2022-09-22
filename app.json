@@ -33,12 +33,7 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Allow Snapchat-Example to access your photos"
-        }
-      ],
-      [
-        "expo-camera",
-        {
+          "photosPermission": "Allow Snapchat-Example to access your photos",
           "cameraPermission": "Allow Snapchat-Example to access your camera"
         }
       ]
