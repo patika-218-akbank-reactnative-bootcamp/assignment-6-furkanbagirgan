@@ -5,7 +5,7 @@ import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { useHeaderHeight } from '@react-navigation/elements';
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { useForm, Controller } from "react-hook-form";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 import styles from './Signup.style';
 import Input from '../../components/Input';
@@ -43,7 +43,7 @@ const Signup = () => {
           userName:data.userName,
         };
         const {user}= await createUserWithEmailAndPassword(auth,data.email,data.password);
-        await addDoc(collection(db, "users"), {
+        await setDoc(doc(db, "users", user.uid), {
           id: user.uid,
           email: data.email,
           userName: data.userName,
