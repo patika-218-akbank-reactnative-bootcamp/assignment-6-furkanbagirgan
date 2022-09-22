@@ -3,7 +3,7 @@ import {View, Image, SafeAreaView, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { signOut } from 'firebase/auth';
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import Icon from '@expo/vector-icons/Feather';
 
 import styles from './Profile.style';
@@ -19,16 +19,18 @@ const Profile = ({navigation}) => {
   const [user,setUser] = useState({});
   const headerHeight = useHeaderHeight();
 
-  //User information that is the same as the current user's id is retrieved from the Firestore and saved in the user state.
-  const getUserData = async()=>{
-    const q = query(collection(db, "users"), where("id", "==", auth.currentUser.uid ));
-    const querySnapshot = await getDocs(q);
-    setUser(querySnapshot.docs[0].data());
-  }
 
-  //The getUserData function is executed when the screen is first opened.
+  //The unsubscribe function is executed when the screen is first opened.
   useEffect(()=>{
-    getUserData();
+    //User information that is the same as the current user's id is retrieved from
+    //the Firestore and saved in the user state.
+    const unsubscribe  = onSnapshot(doc(db, "users", auth.currentUser.uid), (doc) => {
+      setUser(doc.data());
+    });
+
+    return ()=>{
+      unsubscribe();
+    }
   },[]);
 
   //Here is the transition to the theme screen.
