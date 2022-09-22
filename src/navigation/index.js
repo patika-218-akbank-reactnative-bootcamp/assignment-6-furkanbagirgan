@@ -6,7 +6,7 @@ import AuthStack from './AuthStack';
 import ContentStack from './ContentStack';
 import {setCurrentUser} from '../redux/authSlice';
 import {setTheme} from '../redux/themeSlice';
-import {getItem} from '../utilities/storage';
+import {getItem} from '../utilities/asyncStorage';
 
 const Navigation = () => {
   //The currentUser information is accessed with the useSelector hook. 
