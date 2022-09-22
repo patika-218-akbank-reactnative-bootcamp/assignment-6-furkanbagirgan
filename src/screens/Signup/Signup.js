@@ -48,7 +48,8 @@ const Signup = () => {
           email: data.email,
           userName: data.userName,
           location: '',
-          image: ''
+          image: '',
+          profileImage: ''
         });;
         await setItem('@userData', userData);
         await setItem('@themeData', 'light');
