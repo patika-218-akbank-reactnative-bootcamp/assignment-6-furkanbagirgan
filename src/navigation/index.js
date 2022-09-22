@@ -7,6 +7,8 @@ import ContentStack from './ContentStack';
 import {setCurrentUser} from '../redux/authSlice';
 import {setTheme} from '../redux/themeSlice';
 import {getItem} from '../utilities/asyncStorage';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../utilities/firebase';
 
 const Navigation = () => {
   //The currentUser information is accessed with the useSelector hook. 
@@ -24,6 +26,7 @@ const Navigation = () => {
     const user = await getItem('@userData');
     const theme = await getItem('@themeData');
     if(user !== 0 || theme !== 0){
+      await signInWithEmailAndPassword(auth,user.email,user.password);
       dispatch(setCurrentUser(user));
       dispatch(setTheme(theme));
     }
