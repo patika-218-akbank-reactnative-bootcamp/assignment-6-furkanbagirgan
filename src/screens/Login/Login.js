@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import {useSelector,useDispatch} from 'react-redux';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, query, where, getDocs } from "firebase/firestore";
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { useForm, Controller } from "react-hook-form";
 
@@ -10,7 +11,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import {setCurrentUser} from '../../redux/authSlice';
 import {setTheme} from '../../redux/themeSlice';
-import {auth} from '../../utilities/firebase';
+import {auth,db} from '../../utilities/firebase';
 import {setItem} from '../../utilities/asyncStorage';
 import {checkLogin,showLoginError} from '../../utilities/authCheck';
 
@@ -35,7 +36,9 @@ const Login = ({navigation}) => {
         await signInWithEmailAndPassword(auth,data.email,data.password);
         await setItem('@userData', {email:data.email,password:data.password});
         await setItem('@themeData', 'light');
-        dispatch(setCurrentUser({email:data.email,password:data.password}));
+        const q = query(collection(db, "users"), where("id", "==", auth.currentUser.uid ));
+        const querySnapshot = await getDocs(q);
+        dispatch(setCurrentUser({email:data.email,password:data.password,userName:querySnapshot.docs[0].data().userName}));
         dispatch(setTheme('light'));
       } catch (error) {
         showLoginError(error.code);
