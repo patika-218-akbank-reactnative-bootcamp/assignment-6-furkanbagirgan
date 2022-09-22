@@ -3,7 +3,7 @@ import {View, Image, SafeAreaView, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { signOut } from 'firebase/auth';
-import { collection, query, where, getDocs, limit } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import Icon from '@expo/vector-icons/Feather';
 
 import styles from './Profile.style';
@@ -21,22 +21,22 @@ const Profile = ({navigation}) => {
 
   //User information that is the same as the current user's id is retrieved from the Firestore and saved in the user state.
   const getUserData = async()=>{
-    const q = query(collection(db, "users"), where("id", "==", auth.currentUser.uid ), limit(1));
+    const q = query(collection(db, "users"), where("id", "==", auth.currentUser.uid ));
     const querySnapshot = await getDocs(q);
     setUser(querySnapshot.docs[0].data());
   }
 
-  //The getUserData function is executed when the page is first opened.
+  //The getUserData function is executed when the screen is first opened.
   useEffect(()=>{
     getUserData();
   },[]);
 
-  //Here is the transition to the theme page.
+  //Here is the transition to the theme screen.
   const goTheme = () => {
     navigation.navigate('Theme',{theme});
   };
 
-  //Here is the transition to the profile page.
+  //Here is the transition to the profile screen.
   const goEditProfile = () => {
     navigation.navigate('EditProfile',{theme});
   };
