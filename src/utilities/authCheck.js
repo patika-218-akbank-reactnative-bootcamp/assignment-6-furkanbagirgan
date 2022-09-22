@@ -7,25 +7,25 @@ export const checkLogin=(email,password)=>{
       return 1;
     }
     else{
-      Alert.alert('Login Error','Password must contain at least 8 characters!');
+      Alert.alert('Error','Password must contain at least 8 characters!');
       return 0;
     }
   }
   else{
-    Alert.alert('Login Error','Please enter a valid email!');
+    Alert.alert('Error','Please enter a valid email!');
     return 0;
   }
 }
 
 //Incoming email, password, repeat password and user name are checked and return 1 if appropriate and 0 otherwise.
-export const checkSignup=(email,password,repeatPassword,userName)=>{
+export const checkSignup=(email,password,repeatPassword)=>{
   const res=checkLogin(email,password);
   if(res===1){
     if(repeatPassword === password){
       return 1;
     }
     else{
-      Alert.alert('Sign Up Error','Passwords do not match!');
+      Alert.alert('Error','Passwords do not match!');
       return 0;
     }
   }
@@ -38,13 +38,15 @@ export const checkSignup=(email,password,repeatPassword,userName)=>{
 export const showLoginError=(errorCode)=>{
   switch(errorCode){
     case 'auth/user-not-found':
-      Alert.alert('Login Error','There is no user for this email!');
+      Alert.alert('Error','There is no user for this email!');
       break;
     case 'auth/wrong-password':
-      Alert.alert('Login Error','Password is incorrect!');
+      Alert.alert('Error','Password is incorrect!');
       break;
+    case 'auth/too-many-requests':
+      Alert.alert('Error','There is too many auth request!');
     default:
-      Alert.alert('Login Error','Error connecting to server!');
+      Alert.alert('Error','Error connecting to server!');
   }
 }
 
@@ -52,9 +54,9 @@ export const showLoginError=(errorCode)=>{
 export const showSignupError=(errorCode)=>{
   switch(errorCode){
     case 'auth/email-already-in-use':
-      Alert.alert('Sign Up Error','An account already exists for this email!');
+      Alert.alert('Error','An account already exists for this email!');
       break;
     default:
-      Alert.alert('Sign Up Error','Error connecting to server!');
+      Alert.alert('Error','Error connecting to server!');
   }
 }
