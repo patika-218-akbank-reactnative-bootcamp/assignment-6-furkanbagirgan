@@ -56,8 +56,7 @@ const Signup = () => {
         dispatch(setCurrentUser(userData));
         dispatch(setTheme('light'));
       } catch (error) {
-        console.log(error);
-        //showSignupError(error.code);
+        showSignupError(error.code);
       }
     }
     setLoading(false);
@@ -137,7 +136,6 @@ const Signup = () => {
                 theme={theme}
                 placeholder="User Name"
                 iconName="at"
-                secureTextEntry={true}
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
