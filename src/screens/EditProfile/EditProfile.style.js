@@ -11,6 +11,41 @@ const basicStyles=StyleSheet.create({
   },
   buttonWrapper:{
     marginTop: 15
+  },
+  errorText: {
+    color:'red',
+    alignSelf: 'flex-start',
+    marginLeft: 15
+  },
+  imageWrapper: {
+    width: 150,
+    height: 150,
+    marginBottom: 26,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 30,
+  },
+  photoIconWrapper:{
+    width: 32,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    borderRadius: 16,
+    backgroundColor: '#555'
+  },
+  iconsContainer: {
+    width: '55%',
+    position: 'absolute',
+    bottom: -16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   }
 });
 
@@ -22,6 +57,10 @@ const styles = {
       ...basicStyles.container,
       backgroundColor: 'white',
     },
+    imageWrapper: {
+      ...basicStyles.imageWrapper,
+      backgroundColor: '#F2F2F2'
+    }
   }),
   dark:StyleSheet.create({
     ...basicStyles,
@@ -29,6 +68,10 @@ const styles = {
       ...basicStyles.container,
       backgroundColor: '#000',
     },
+    imageWrapper: {
+      ...basicStyles.imageWrapper,
+      backgroundColor: '#B9C0C8'
+    }
   })
 };
 
