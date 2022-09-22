@@ -60,7 +60,7 @@ const Profile = ({navigation}) => {
             style={styles[theme].image}
           />
           :
-          <Icon name='user' color='#B9C0C8' size={80} />
+          <Icon name='user' color={theme === 'light' ? '#B9C0C8' : '#F2F2F2'} size={80} />
         }
       </View>
       <Text

@@ -16,7 +16,6 @@ const basicStyles=StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F2F2F2'
   },
   image: {
     width: '100%',
@@ -45,6 +44,10 @@ const styles = {
       ...basicStyles.container,
       backgroundColor: 'white',
     },
+    imageWrapper: {
+      ...basicStyles.imageWrapper,
+      backgroundColor: '#F2F2F2'
+    }
   }),
   dark:StyleSheet.create({
     ...basicStyles,
@@ -52,6 +55,10 @@ const styles = {
       ...basicStyles.container,
       backgroundColor: '#000',
     },
+    imageWrapper: {
+      ...basicStyles.imageWrapper,
+      backgroundColor: '#B9C0C8'
+    }
   }),
 };
 
