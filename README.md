@@ -28,7 +28,7 @@ In this assignment, an application with user login and showing musics was develo
 </div>
 <div>
 <kbd><img src="screenshots/lightSeeimage.jpg" width="250"></kbd>
-<kbd><img src="screenshots/lightEditProfile.jpg" width="250"></kbd>
+<kbd><img src="screenshots/lightEditprofile.jpg" width="250"></kbd>
 <kbd><img src="screenshots/lightTheme.jpg" width="250"></kbd>
 </div>
 <div>
@@ -43,7 +43,7 @@ In this assignment, an application with user login and showing musics was develo
 </div>
 <div>
 <kbd><img src="screenshots/darkSeeimage.jpg" width="250"></kbd>
-<kbd><img src="screenshots/darkEditProfile.jpg" width="250"></kbd>
+<kbd><img src="screenshots/darkEditprofile.jpg" width="250"></kbd>
 <kbd><img src="screenshots/darkTheme.jpg" width="250"></kbd>
 </div>
 
