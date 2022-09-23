@@ -19,8 +19,6 @@ const Profile = ({navigation}) => {
   const [user,setUser] = useState({});
   const headerHeight = useHeaderHeight();
 
-
-  //The unsubscribe function is executed when the screen is first opened.
   useEffect(()=>{
     //User information that is the same as the current user's id is retrieved from
     //the Firestore and saved in the user state.
@@ -28,6 +26,7 @@ const Profile = ({navigation}) => {
       setUser(doc.data());
     });
 
+    //The unsubscribe function is executed when the screen is closed.
     return ()=>{
       unsubscribe();
     }
