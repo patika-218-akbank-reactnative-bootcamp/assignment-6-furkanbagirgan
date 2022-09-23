@@ -1,13 +1,12 @@
-import {StyleSheet,StatusBar, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
-//Here the basic styles of the PreviewImage screen are created.
-const basicStyles=StyleSheet.create({
+//Here the styles of the PreviewImage screen are created.
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20
   },
   errorWrapper: {
-    flex: 1,
+    flex: 9,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -16,41 +15,17 @@ const basicStyles=StyleSheet.create({
     color: 'red',
     fontSize: 18,
   },
-  musicContainer: {
-    width:'100%',
+  image: {
+    flex:12,
   },
-  loadingContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  bottomContainer:{
+    flex:1,
+    flexDirection:'column',
+    justifyContent: 'center',
+    alignItems:'center',
+    padding: 10,
+    backgroundColor: '#B9C0C8'
+  }
 });
-
-//Here the changing styles of the PreviewImage screen are created.
-const styles = {
-  light: StyleSheet.create({
-    ...basicStyles,
-    container: {
-      ...basicStyles.container,
-      backgroundColor: 'white',
-    },
-    loadingContainer:{
-      ...basicStyles.loadingContainer,
-      backgroundColor: '#FFF'
-    }
-  }),
-  dark: StyleSheet.create({
-    ...basicStyles,
-    container: {
-      ...basicStyles.container,
-      backgroundColor: '#191414',
-    },
-    loadingContainer:{
-      ...basicStyles.loadingContainer,
-      backgroundColor: '#191414'
-    }
-  }),
-};
 
 export default styles;
