@@ -15,7 +15,6 @@ const Home = ({navigation}) => {
   const theme = useSelector(state => state.theme.theme);
   const [user,setUser] = useState({});
 
-  //The unsubscribe function is executed when the screen is first opened.
   useEffect(()=>{
     //User information that is the same as the current user's id is retrieved from
     //the Firestore and saved in the user state.
@@ -23,6 +22,7 @@ const Home = ({navigation}) => {
       setUser({...doc.data(),docId:doc.id});
     });
 
+    //The unsubscribe function is executed when the screen is closed.
     return ()=>{
       unsubscribe();
     }
