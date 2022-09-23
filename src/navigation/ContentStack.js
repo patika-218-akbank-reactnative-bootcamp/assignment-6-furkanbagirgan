@@ -29,7 +29,7 @@ const ContentStack = () => {
           headerStyle: {backgroundColor: theme === 'light' ? '#FFF' : '#000'},
           headerTitleAlign: 'center',
           headerTintColor: '#B9C0C8',
-          headerTitle: '',
+          headerTitle: 'Preview Image',
           headerShadowVisible: false,
         }}
       />
@@ -40,7 +40,7 @@ const ContentStack = () => {
           headerStyle: {backgroundColor: theme === 'light' ? '#FFF' : '#000'},
           headerTitleAlign: 'center',
           headerTintColor: '#B9C0C8',
-          headerTitle: '',
+          headerTitle: 'See Image',
           headerShadowVisible: false,
         }}
       />
