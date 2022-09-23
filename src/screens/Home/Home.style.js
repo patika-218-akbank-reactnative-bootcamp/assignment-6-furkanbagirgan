@@ -1,16 +1,16 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 //Here the basic styles of the Home screen are created.
-const basicStyles=StyleSheet.create({
+const basicStyles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 10,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#B9C0C8'
+    color: '#B9C0C8',
   },
   buttonWrapper: {
     width: '100%',
@@ -18,14 +18,14 @@ const basicStyles=StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 20
+    marginVertical: 20,
   },
   imageContainer: {
     width: '100%',
     height: 60,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#B9C0C8'
+    backgroundColor: '#B9C0C8',
   },
   imageWrapper: {
     width: 50,
@@ -42,9 +42,9 @@ const basicStyles=StyleSheet.create({
   },
   imageTitle: {
     color: '#555',
-    marginLeft: 5
+    marginLeft: 5,
   },
-  iconWrapper:{
+  iconWrapper: {
     width: 34,
     height: 34,
     borderRadius: 15,
@@ -53,13 +53,13 @@ const basicStyles=StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     top: 13,
-    right:10,
-  }
+    right: 10,
+  },
 });
 
 //Here the styles of the Home screen are created.
 const styles = {
-  light:StyleSheet.create({
+  light: StyleSheet.create({
     ...basicStyles,
     container: {
       ...basicStyles.container,
@@ -67,10 +67,10 @@ const styles = {
     },
     imageWrapper: {
       ...basicStyles.imageWrapper,
-      backgroundColor: '#F2F2F2'
-    }
+      backgroundColor: '#F2F2F2',
+    },
   }),
-  dark:StyleSheet.create({
+  dark: StyleSheet.create({
     ...basicStyles,
     container: {
       ...basicStyles.container,
@@ -78,9 +78,9 @@ const styles = {
     },
     imageWrapper: {
       ...basicStyles.imageWrapper,
-      backgroundColor: '#555'
-    }
-  })
+      backgroundColor: '#555',
+    },
+  }),
 };
 
 export default styles;

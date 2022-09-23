@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 //Here the basic styles of the Profile screen are created.
-const basicStyles=StyleSheet.create({
+const basicStyles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -27,18 +27,18 @@ const basicStyles=StyleSheet.create({
     marginBottom: 20,
     color: '#B9C0C8',
   },
-  buttonContainer:{
+  buttonContainer: {
     height: 180,
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 15
+    marginVertical: 15,
   },
 });
 
 //Here the changing styles of the Profile screen are created.
 const styles = {
-  light:StyleSheet.create({
+  light: StyleSheet.create({
     ...basicStyles,
     container: {
       ...basicStyles.container,
@@ -46,10 +46,10 @@ const styles = {
     },
     imageWrapper: {
       ...basicStyles.imageWrapper,
-      backgroundColor: '#F2F2F2'
-    }
+      backgroundColor: '#F2F2F2',
+    },
   }),
-  dark:StyleSheet.create({
+  dark: StyleSheet.create({
     ...basicStyles,
     container: {
       ...basicStyles.container,
@@ -57,8 +57,8 @@ const styles = {
     },
     imageWrapper: {
       ...basicStyles.imageWrapper,
-      backgroundColor: '#B9C0C8'
-    }
+      backgroundColor: '#B9C0C8',
+    },
   }),
 };
 

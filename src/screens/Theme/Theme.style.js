@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 //Here the basic styles of the theme screen are created.
-const basicStyles=StyleSheet.create({
+const basicStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
@@ -28,36 +28,36 @@ const basicStyles=StyleSheet.create({
 
 //Here the styles of the theme screen are created.
 const styles = StyleSheet.create({
-  light:StyleSheet.create({
+  light: StyleSheet.create({
     ...basicStyles,
     container: {
       ...basicStyles.container,
       backgroundColor: 'white',
     },
-    lightTheme:{
+    lightTheme: {
       ...basicStyles.themeContainer,
       backgroundColor: '#F2F2F2',
     },
-    darkTheme:{
+    darkTheme: {
       ...basicStyles.themeContainer,
       backgroundColor: '#555',
     },
   }),
-  dark:StyleSheet.create({
+  dark: StyleSheet.create({
     ...basicStyles,
     container: {
       ...basicStyles.container,
       backgroundColor: '#000',
     },
-    lightTheme:{
+    lightTheme: {
       ...basicStyles.themeContainer,
       backgroundColor: '#F2F2F2',
     },
-    darkTheme:{
+    darkTheme: {
       ...basicStyles.themeContainer,
       backgroundColor: '#555',
     },
-  })
+  }),
 });
 
 export default styles;

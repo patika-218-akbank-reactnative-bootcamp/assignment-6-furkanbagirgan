@@ -9,18 +9,14 @@ const SeeImage = ({route}) => {
 
   //Here are the components that will appear on the screen.
   return (
-    <SafeAreaView
-      style={styles.container}>
-      {image!=='' ?
-        <Image
-          source={{uri:  image}}
-          style={styles.image}
-        />
-        :
+    <SafeAreaView style={styles.container}>
+      {image !== '' ? (
+        <Image source={{uri: image}} style={styles.image} />
+      ) : (
         <View style={styles.errorWrapper}>
           <Text style={styles.errorText}>An error was viewing the image.</Text>
         </View>
-      }
+      )}
     </SafeAreaView>
   );
 };

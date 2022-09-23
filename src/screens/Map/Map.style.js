@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFC00'
+    backgroundColor: '#FFFC00',
   },
   image: {
     width: '90%',

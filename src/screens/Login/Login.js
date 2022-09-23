@@ -1,44 +1,61 @@
-import React, {useState} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
-import {useSelector,useDispatch} from 'react-redux';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, query, where, getDocs } from "firebase/firestore";
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { useForm, Controller } from "react-hook-form";
+import {signInWithEmailAndPassword} from 'firebase/auth';
+import {collection, query, where, getDocs} from 'firebase/firestore';
+import React, {useState} from 'react';
+import {useForm, Controller} from 'react-hook-form';
+import {SafeAreaView, Text, View} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
-import styles from './Login.style';
-import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Input from '../../components/Input';
 import {setCurrentUser} from '../../redux/authSlice';
 import {setTheme} from '../../redux/themeSlice';
-import {auth,db} from '../../utilities/firebase';
 import {setItem} from '../../utilities/asyncStorage';
-import {checkLogin,showLoginError} from '../../utilities/authCheck';
+import {checkLogin, showLoginError} from '../../utilities/authCheck';
+import {auth, db} from '../../utilities/firebase';
+import styles from './Login.style';
 
 const Login = ({navigation}) => {
   //Necessary states are created.
   const theme = useSelector(state => state.theme.theme);
   const [loading, setLoading] = useState(false);
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
     defaultValues: {
       email: '',
-      password: ''
-    }
+      password: '',
+    },
   });
   const dispatch = useDispatch();
 
   //The entered information is checked and entered into firebase. Then this information is saved to storage and redux.
-  const login = async (data) => {
+  const login = async data => {
     setLoading(true);
-    const res=checkLogin(data.email,data.password);
-    if(res===1){
+    const res = checkLogin(data.email, data.password);
+    if (res === 1) {
       try {
-        await signInWithEmailAndPassword(auth,data.email,data.password);
-        const q = query(collection(db, "users"), where("id", "==", auth.currentUser.uid ));
+        await signInWithEmailAndPassword(auth, data.email, data.password);
+        const q = query(
+          collection(db, 'users'),
+          where('id', '==', auth.currentUser.uid),
+        );
         const querySnapshot = await getDocs(q);
-        await setItem('@userData', {email:data.email,password:data.password,userName:querySnapshot.docs[0].data().userName});
+        await setItem('@userData', {
+          email: data.email,
+          password: data.password,
+          userName: querySnapshot.docs[0].data().userName,
+        });
         await setItem('@themeData', 'light');
-        dispatch(setCurrentUser({email:data.email,password:data.password,userName:querySnapshot.docs[0].data().userName}));
+        dispatch(
+          setCurrentUser({
+            email: data.email,
+            password: data.password,
+            userName: querySnapshot.docs[0].data().userName,
+          }),
+        );
         dispatch(setTheme('light'));
       } catch (error) {
         showLoginError(error.code);
@@ -56,7 +73,11 @@ const Login = ({navigation}) => {
   return (
     <SafeAreaView style={styles[theme].container}>
       <View style={styles[theme].wrapper}>
-        <Icon name='snapchat' color={theme==='light' ? '#000' : '#B9C0C8'} size={60} />
+        <Icon
+          name="snapchat"
+          color={theme === 'light' ? '#000' : '#B9C0C8'}
+          size={60}
+        />
         <Text style={styles[theme].header}>Log In</Text>
         <View style={styles[theme].formContainer}>
           <Controller
@@ -64,7 +85,7 @@ const Login = ({navigation}) => {
             rules={{
               required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({field: {onChange, onBlur, value}}) => (
               <Input
                 theme={theme}
                 placeholder="Email"
@@ -77,18 +98,20 @@ const Login = ({navigation}) => {
             )}
             name="email"
           />
-          {errors.email && <Text style={styles[theme].errorText}>This field is required*</Text>}
+          {errors.email && (
+            <Text style={styles[theme].errorText}>This field is required*</Text>
+          )}
           <Controller
             control={control}
             rules={{
               required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({field: {onChange, onBlur, value}}) => (
               <Input
                 theme={theme}
                 placeholder="Password"
                 iconName="lock-closed"
-                secureTextEntry={true}
+                secureTextEntry
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
@@ -96,9 +119,15 @@ const Login = ({navigation}) => {
             )}
             name="password"
           />
-          {errors.password && <Text style={styles[theme].errorText}>This field is required*</Text>}
+          {errors.password && (
+            <Text style={styles[theme].errorText}>This field is required*</Text>
+          )}
         </View>
-        <Button title="Log In" loading={loading} onClick={handleSubmit(login)} />
+        <Button
+          title="Log In"
+          loading={loading}
+          onClick={handleSubmit(login)}
+        />
         <Text style={styles[theme].signupText}>New To Snapchat?</Text>
         <Button title="Sign Up" onClick={goToSignup} />
       </View>

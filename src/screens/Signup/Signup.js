@@ -1,56 +1,69 @@
-import React, {useState} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
-import {useSelector,useDispatch} from 'react-redux';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
-import { useHeaderHeight } from '@react-navigation/elements';
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-import { useForm, Controller } from "react-hook-form";
-import { doc, setDoc } from "firebase/firestore";
+import {useHeaderHeight} from '@react-navigation/elements';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {doc, setDoc} from 'firebase/firestore';
+import React, {useState} from 'react';
+import {useForm, Controller} from 'react-hook-form';
+import {SafeAreaView, Text, View} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
-import styles from './Signup.style';
-import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Input from '../../components/Input';
 import {setCurrentUser} from '../../redux/authSlice';
 import {setTheme} from '../../redux/themeSlice';
-import {auth,db} from '../../utilities/firebase';
 import {setItem} from '../../utilities/asyncStorage';
-import {checkSignup,showSignupError} from '../../utilities/authCheck';
+import {checkSignup, showSignupError} from '../../utilities/authCheck';
+import {auth, db} from '../../utilities/firebase';
+import styles from './Signup.style';
 
 const Signup = () => {
   //Necessary states are created.
   const theme = useSelector(state => state.theme.theme);
   const [loading, setLoading] = useState(false);
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
     defaultValues: {
       email: '',
       password: '',
       repeatPassword: '',
-      userName: ''
-    }
+      userName: '',
+    },
   });
   const dispatch = useDispatch();
   const headerHeight = useHeaderHeight();
 
   //The entered information is checked and saved to firebase. Then this information is saved to storage and redux.
-  const signup = async (data) => {
+  const signup = async data => {
     setLoading(true);
-    const res=checkSignup(data.email,data.password,data.repeatPassword,data.userName);
-    if(res===1){
+    const res = checkSignup(
+      data.email,
+      data.password,
+      data.repeatPassword,
+      data.userName,
+    );
+    if (res === 1) {
       try {
         const userData = {
-          email:data.email,
-          password:data.password,
-          userName:data.userName,
+          email: data.email,
+          password: data.password,
+          userName: data.userName,
         };
-        const {user}= await createUserWithEmailAndPassword(auth,data.email,data.password);
-        await setDoc(doc(db, "users", user.uid), {
+        const {user} = await createUserWithEmailAndPassword(
+          auth,
+          data.email,
+          data.password,
+        );
+        await setDoc(doc(db, 'users', user.uid), {
           id: user.uid,
           email: data.email,
           userName: data.userName,
           location: '',
           image: '',
-          profileImage: ''
-        });;
+          profileImage: '',
+        });
         await setItem('@userData', userData);
         await setItem('@themeData', 'light');
         dispatch(setCurrentUser(userData));
@@ -64,9 +77,14 @@ const Signup = () => {
 
   //Here, inputs for user data and button are pressed to the screen.
   return (
-    <SafeAreaView style={{...styles[theme].container,paddingBottom:headerHeight}}>
+    <SafeAreaView
+      style={{...styles[theme].container, paddingBottom: headerHeight}}>
       <View style={styles[theme].wrapper}>
-        <Icon name='snapchat' color={theme==='light' ? '#000' : '#B9C0C8'} size={60} />
+        <Icon
+          name="snapchat"
+          color={theme === 'light' ? '#000' : '#B9C0C8'}
+          size={60}
+        />
         <Text style={styles[theme].header}>Sign Up</Text>
         <View style={styles[theme].formContainer}>
           <Controller
@@ -74,7 +92,7 @@ const Signup = () => {
             rules={{
               required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({field: {onChange, onBlur, value}}) => (
               <Input
                 theme={theme}
                 placeholder="Email"
@@ -87,18 +105,20 @@ const Signup = () => {
             )}
             name="email"
           />
-          {errors.email && <Text style={styles[theme].errorText}>This field is required*</Text>}
+          {errors.email && (
+            <Text style={styles[theme].errorText}>This field is required*</Text>
+          )}
           <Controller
             control={control}
             rules={{
               required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({field: {onChange, onBlur, value}}) => (
               <Input
                 theme={theme}
                 placeholder="Password"
                 iconName="lock-closed"
-                secureTextEntry={true}
+                secureTextEntry
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
@@ -106,18 +126,20 @@ const Signup = () => {
             )}
             name="password"
           />
-          {errors.password && <Text style={styles[theme].errorText}>This field is required*</Text>}
+          {errors.password && (
+            <Text style={styles[theme].errorText}>This field is required*</Text>
+          )}
           <Controller
             control={control}
             rules={{
               required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({field: {onChange, onBlur, value}}) => (
               <Input
                 theme={theme}
                 placeholder="Repeat Password"
                 iconName="lock-closed"
-                secureTextEntry={true}
+                secureTextEntry
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
@@ -125,13 +147,15 @@ const Signup = () => {
             )}
             name="repeatPassword"
           />
-          {errors.repeatPassword && <Text style={styles[theme].errorText}>This field is required*</Text>}
+          {errors.repeatPassword && (
+            <Text style={styles[theme].errorText}>This field is required*</Text>
+          )}
           <Controller
             control={control}
             rules={{
               required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({field: {onChange, onBlur, value}}) => (
               <Input
                 theme={theme}
                 placeholder="User Name"
@@ -143,9 +167,15 @@ const Signup = () => {
             )}
             name="userName"
           />
-          {errors.userName && <Text style={styles[theme].errorText}>This field is required*</Text>}
+          {errors.userName && (
+            <Text style={styles[theme].errorText}>This field is required*</Text>
+          )}
         </View>
-        <Button title="Sign Up" loading={loading} onClick={handleSubmit(signup)} />
+        <Button
+          title="Sign Up"
+          loading={loading}
+          onClick={handleSubmit(signup)}
+        />
       </View>
     </SafeAreaView>
   );

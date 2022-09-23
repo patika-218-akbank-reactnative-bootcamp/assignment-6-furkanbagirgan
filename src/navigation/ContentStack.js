@@ -1,12 +1,12 @@
-import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
 import {useSelector} from 'react-redux';
 
-import Tabs from './Tabs';
+import EditProfile from './../screens/EditProfile';
 import PreviewImage from './../screens/PreviewImage';
 import SeeImage from './../screens/SeeImage';
-import EditProfile from './../screens/EditProfile';
 import Theme from './../screens/Theme';
+import Tabs from './Tabs';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,11 +36,11 @@ const ContentStack = () => {
       <Stack.Screen
         name="SeeImage"
         component={SeeImage}
-        options={({route})=>({
+        options={({route}) => ({
           headerStyle: {backgroundColor: theme === 'light' ? '#FFF' : '#000'},
           headerTitleAlign: 'center',
           headerTintColor: '#B9C0C8',
-          headerTitle: '@'+route.params.userName,
+          headerTitle: '@' + route.params.userName,
           headerShadowVisible: false,
         })}
       />

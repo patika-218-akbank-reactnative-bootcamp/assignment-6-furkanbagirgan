@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 //Here the basic styles of the Signup screen are created.
-const basicStyles=StyleSheet.create({
+const basicStyles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -14,10 +14,10 @@ const basicStyles=StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    borderRadius: 15
+    borderRadius: 15,
   },
   errorText: {
-    color:'red'
+    color: 'red',
   },
   header: {
     fontSize: 50,
@@ -25,7 +25,7 @@ const basicStyles=StyleSheet.create({
   },
   formContainer: {
     marginTop: 20,
-    marginBottom: 10
+    marginBottom: 10,
   },
 });
 
@@ -33,33 +33,33 @@ const basicStyles=StyleSheet.create({
 const styles = {
   light: StyleSheet.create({
     ...basicStyles,
-    container:{
+    container: {
       ...basicStyles.container,
       backgroundColor: '#F2F2F2',
     },
-    wrapper:{
+    wrapper: {
       ...basicStyles.wrapper,
       backgroundColor: '#FFF',
     },
-    header:{
+    header: {
       ...basicStyles.header,
-      color: '#000'
-    }
+      color: '#000',
+    },
   }),
   dark: StyleSheet.create({
     ...basicStyles,
-    container:{
+    container: {
       ...basicStyles.container,
       backgroundColor: '#000',
     },
-    wrapper:{
+    wrapper: {
       ...basicStyles.wrapper,
       backgroundColor: '#555',
     },
-    header:{
+    header: {
       ...basicStyles.header,
       color: '#B9C0C8',
-    }
+    },
   }),
 };
 

@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 //Here the basic styles of the input are created.
-const basicStyles=StyleSheet.create({
+const basicStyles = StyleSheet.create({
   container: {
     width: '90%',
     height: 45,
@@ -21,25 +21,25 @@ const basicStyles=StyleSheet.create({
 const styles = {
   light: StyleSheet.create({
     ...basicStyles,
-    container:{
+    container: {
       ...basicStyles.container,
       backgroundColor: '#F7F7F7',
     },
-    input:{
+    input: {
       ...basicStyles.input,
-      color: '#B9C0C8'
-    }
+      color: '#B9C0C8',
+    },
   }),
   dark: StyleSheet.create({
     ...basicStyles,
-    container:{
+    container: {
       ...basicStyles.container,
       backgroundColor: '#B9C0C8',
     },
-    input:{
+    input: {
       ...basicStyles.input,
-      color: '#333'
-    }
+      color: '#333',
+    },
   }),
 };
 

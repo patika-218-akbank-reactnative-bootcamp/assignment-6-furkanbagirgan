@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   image: {
-    flex:1,
+    flex: 1,
   },
 });
 

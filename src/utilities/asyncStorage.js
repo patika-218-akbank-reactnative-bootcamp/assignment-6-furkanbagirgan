@@ -1,45 +1,48 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Alert } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Alert} from 'react-native';
 
 //Writes data to storage
-export const setItem=async(key,value)=>{
+export const setItem = async (key, value) => {
   try {
     await AsyncStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
-    Alert.alert('Storage Error','Could not write to storage!');
+    console.log(error);
+    Alert.alert('Storage Error', 'Could not write to storage!');
   }
-}
+};
 
 //Read data from storage
-export const getItem=async(key)=>{
+export const getItem = async key => {
   try {
-    const data=await AsyncStorage.getItem(key);
+    const data = await AsyncStorage.getItem(key);
     if (data !== null) {
       return JSON.parse(data);
-    }
-    else{
+    } else {
       return 0;
     }
   } catch (error) {
-    Alert.alert('Storage Error','Storage could not be read!');
+    console.log(error);
+    Alert.alert('Storage Error', 'Storage could not be read!');
     return 0;
   }
-}
+};
 
 //Update data in storage
-export const updateItem=async(key,value)=>{
+export const updateItem = async (key, value) => {
   try {
     await AsyncStorage.mergeItem(key, JSON.stringify(value));
   } catch (error) {
-    Alert.alert('Storage Error','Could not update storage!');
+    console.log(error);
+    Alert.alert('Storage Error', 'Could not update storage!');
   }
-}
+};
 
 //Remove data from storage
-export const removeItem=async(key)=>{
+export const removeItem = async key => {
   try {
     await AsyncStorage.removeItem(key);
   } catch (error) {
-    Alert.alert('Storage Error','Could not delete from storage!');
+    console.log(error);
+    Alert.alert('Storage Error', 'Could not delete from storage!');
   }
-}
+};

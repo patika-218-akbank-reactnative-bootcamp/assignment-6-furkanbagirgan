@@ -1,6 +1,6 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from '@expo/vector-icons/Feather';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React from 'react';
 import {useSelector} from 'react-redux';
 
 import Home from './../screens/Home';
@@ -21,7 +21,7 @@ const Tabs = () => {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
           let iconColor;
-          const iconSize=26;
+          const iconSize = 26;
           if (route.name === 'Home') {
             iconName = 'camera';
             iconColor = focused ? 'blue' : 'white';
@@ -35,7 +35,7 @@ const Tabs = () => {
 
           return <Icon name={iconName} size={iconSize} color={iconColor} />;
         },
-        tabBarStyle: {borderTopColor:'#000'},
+        tabBarStyle: {borderTopColor: '#000'},
         headerStyle: {backgroundColor: theme === 'light' ? '#FFF' : '#000'},
         headerTintColor: '#B9C0C8',
         headerTitleAlign: 'center',

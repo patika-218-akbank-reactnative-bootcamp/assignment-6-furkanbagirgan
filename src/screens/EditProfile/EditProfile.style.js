@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 //Here the basic styles of the edit profile screen are created.
-const basicStyles=StyleSheet.create({
+const basicStyles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -9,13 +9,13 @@ const basicStyles=StyleSheet.create({
     alignItems: 'center',
     padding: 25,
   },
-  buttonWrapper:{
-    marginTop: 15
+  buttonWrapper: {
+    marginTop: 15,
   },
   errorText: {
-    color:'red',
+    color: 'red',
     alignSelf: 'flex-start',
-    marginLeft: 15
+    marginLeft: 15,
   },
   imageWrapper: {
     width: 150,
@@ -30,14 +30,14 @@ const basicStyles=StyleSheet.create({
     height: '100%',
     borderRadius: 30,
   },
-  photoIconWrapper:{
+  photoIconWrapper: {
     width: 32,
     height: 32,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
     borderRadius: 16,
-    backgroundColor: '#555'
+    backgroundColor: '#555',
   },
   iconsContainer: {
     width: '55%',
@@ -46,12 +46,12 @@ const basicStyles=StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  }
+  },
 });
 
 //Here the styles of the edit profile screen are created.
 const styles = {
-  light:StyleSheet.create({
+  light: StyleSheet.create({
     ...basicStyles,
     container: {
       ...basicStyles.container,
@@ -59,10 +59,10 @@ const styles = {
     },
     imageWrapper: {
       ...basicStyles.imageWrapper,
-      backgroundColor: '#F2F2F2'
-    }
+      backgroundColor: '#F2F2F2',
+    },
   }),
-  dark:StyleSheet.create({
+  dark: StyleSheet.create({
     ...basicStyles,
     container: {
       ...basicStyles.container,
@@ -70,9 +70,9 @@ const styles = {
     },
     imageWrapper: {
       ...basicStyles.imageWrapper,
-      backgroundColor: '#B9C0C8'
-    }
-  })
+      backgroundColor: '#B9C0C8',
+    },
+  }),
 };
 
 export default styles;

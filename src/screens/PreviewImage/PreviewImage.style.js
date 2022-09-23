@@ -16,16 +16,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   image: {
-    flex:12,
+    flex: 12,
   },
-  bottomContainer:{
-    flex:1,
-    flexDirection:'column',
+  bottomContainer: {
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
-    alignItems:'center',
+    alignItems: 'center',
     padding: 10,
-    backgroundColor: '#B9C0C8'
-  }
+    backgroundColor: '#B9C0C8',
+  },
 });
 
 export default styles;
