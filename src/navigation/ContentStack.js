@@ -36,13 +36,13 @@ const ContentStack = () => {
       <Stack.Screen
         name="SeeImage"
         component={SeeImage}
-        options={{
+        options={({route})=>({
           headerStyle: {backgroundColor: theme === 'light' ? '#FFF' : '#000'},
           headerTitleAlign: 'center',
           headerTintColor: '#B9C0C8',
-          headerTitle: 'See Image',
+          headerTitle: '@'+route.params.userName,
           headerShadowVisible: false,
-        }}
+        })}
       />
       <Stack.Screen
         name="Theme"
