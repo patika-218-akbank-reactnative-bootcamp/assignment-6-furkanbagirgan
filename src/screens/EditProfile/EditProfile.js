@@ -96,7 +96,6 @@ const EditProfile = () => {
         Alert.alert('Profile Update','The profile has been successfully updated.');
       }
     } catch (error) {
-      console.log(error);
       showSignupError(error.code);
     }
     setLoading(false);
@@ -158,7 +157,7 @@ const EditProfile = () => {
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
             aspect: [1, 1],
-            quality: 1,
+            quality: 0.5,
           });
           if (!result.cancelled) {
             setProfileImage(result.uri);
