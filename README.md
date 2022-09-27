@@ -1,5 +1,5 @@
 # Assigment-6
-In this assignment, an application with user login and showing musics was developed. The user signs up to the application with their email, password and username. On the home screen, the user selects a picture from the gallery or camera and shares it by previewing the picture. During sharing, the current location of the user is saved with the picture. On the map screen, all users sharing pictures are shown on the map with their locations. If desired, the shared pictures can be viewed by pressing on them.
+In this assignment, an application has been developed that displays the users and the pictures shared by them on the Map. The user signs up to the application with their email, password and username. On the home screen, the user selects a picture from the gallery or camera and shares it by previewing the picture. During sharing, the current location of the user is saved with the picture. On the map screen, all users sharing pictures are shown on the map with their locations. If desired, the shared pictures can be viewed by pressing on them.
 
 ## Used technologies
 - Expo CLI
